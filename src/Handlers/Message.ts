@@ -72,6 +72,10 @@ export class MessageHandler {
         const { nsfw } = await this.client.DB.getGroup(M.from)
         if (command.config.category === 'nsfw' && !nsfw)
             return void M.reply('This command can only be used in NSFW enabled groups')
+        if (command.config.casino && M.from !== this.client.config.casinoGroup)
+            return void M.reply(
+                `This command can only be used in the casino group. Use ${this.client.config.prefix}support to get the casino group link`
+            )
         const cooldownAmount = (command.config.cooldown ?? 3) * 1000
         const time = cooldownAmount + Date.now()
         if (this.cooldowns.has(`${M.sender.jid}${command.name}`)) {
