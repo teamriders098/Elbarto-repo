@@ -30,6 +30,8 @@ interface ICommandConfig {
     dm?: boolean
     /**Cooldown of the command */
     cooldown?: number
+    /**Casino only gambling*/
+    casino?: boolean
 }
 
-export type TCategory = 'dev' | 'general' | 'weeb' | 'utils' | 'fun' | 'moderation' | 'media' | 'category' | 'nsfw'
+export type TCategory = 'dev' | 'general' | 'weeb' | 'utils' | 'fun' | 'moderation' | 'media' | 'category' | 'nsfw' | 'economy'
