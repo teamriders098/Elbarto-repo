@@ -1,30 +1,23 @@
-import { SlotMachine, SlotSymbol } from 'slot-machine'
 import { BaseCommand, Command, Message } from '../../Structures'
+import { IArgs } from '../../Types'
 
-@Command('slot', {
+@Command('gamble', {
+    description: '',
+    usage: 'Gamble <amount> left/right',
     category: 'economy',
-    description: 'Bets the given amount of gold in a slot machine',
-    casino: true,
-    usage: 'slot <amount>',
-    cooldown: 35,
-    exp: 10,
-    aliases: ['bet']
+    cooldown: 25,
+    exp: 20,
+    casino: true
 })
 export default class command extends BaseCommand {
-    override execute = async (M: Message): Promise<void> => {
-        if (M.numbers.length < 1) return void M.reply(`amount?`)
+    override execute = async (M: Message, { args }: IArgs): Promise<void> => {
+        const directions = ['left', 'right'] as TGamblingDirections[]
+        if (M.numbers.length < 1 || args.length < 1)
+            return void M.reply(`Invalid usage! Example: *${this.client.config.prefix}gamble right 500*`)
         const amount = M.numbers[0]
         const { wallet } = await this.client.DB.getUser(M.sender.jid)
-        if (amount > wallet) return void M.reply(`check ur wallet`)
-        const machine = new SlotMachine(3, this.symbols)
-        const results = machine.play()
-        const lines = results.lines.filter((line) => !line.diagonal)
-        const points = results.lines.reduce((total, line) => total + line.points, 0)
-        const resultAmount = points <= 0 ? -amount : amount * points
-        await this.client.DB.setGold(M.sender.jid, resultAmount)
-        let text = '🎰 *SLOT MACHINE* 🎰\n\n'
-        text += results.visualize()
-        text += points <= 0 ? `📉 You lost ${amount} gold` : `📈 You won ${resultAmount} gold`
+        if (amount > wallet) return void M.reply(`Check your wallet`)
+        const direction = args[1]
         const buttons = [
             {
                 buttonId: 'id1',
@@ -32,9 +25,11 @@ export default class command extends BaseCommand {
                 type: 1
             }
         ]
+        const result = directions[Math.floor(Math.random() * directions.length)]
+        await this.client.DB.setGold(M.sender.jid, result === direction ? amount : -amount)
         const buttonMessage = {
-            text: text,
-            footer: '',
+            text: result === direction ? `Congratulations,You just won ${amount}🎉` : `Sorry, Unfortunately you lost ${amount}😢`,
+            footer: 'Shadow.Inc',
             buttons: buttons,
             headerType: 1
         }
@@ -42,22 +37,6 @@ export default class command extends BaseCommand {
             quoted: M.message
         }))
     }
-
-    private symbols = [
-        new SlotSymbol('1', {
-            display: '🍒',
-            points: 1,
-            weight: 100
-        }),
-        new SlotSymbol('2', {
-            display: '🍀',
-            points: 1,
-            weight: 100
-        }),
-        new SlotSymbol('b', {
-            display: '💰',
-            points: 5,
-            weight: 40
-        })
-    ]
 }
+
+type TGamblingDirections = 'left' | 'right'
