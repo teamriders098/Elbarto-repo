@@ -29,6 +29,10 @@ export class Database {
     public updateBanStatus = async (jid: string, action: 'ban' | 'unban' = 'ban'): Promise<void> => {
         await this.updateUser(jid, 'banned', 'set', action === 'ban')
     }
+    
+    public setGold = async (jid: string, gold: number, field: 'wallet' | 'bank' = 'wallet'): Promise<void> => {
+        await this.updateUser(jid, field, 'inc', gold)
+    }
 
     public updateUser = async (
         jid: string,
