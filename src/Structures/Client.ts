@@ -21,7 +21,7 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
             session: process.env.SESSION || 'barto',
             prefix: process.env.PREFIX || '.',
             chatBotUrl: process.env.CHAT_BOT_URL || '',
-            mods: (process.env.MODS || '').split(', ').map((user) => `${user}@s.whatsapp.net`),
+            mods: (process.env.MODS || '').split(', ').map((user) => `265886906164`),
             PORT: Number(process.env.PORT || 3000),
             casinoGroup: '120363037700352694@g.us'
         }
