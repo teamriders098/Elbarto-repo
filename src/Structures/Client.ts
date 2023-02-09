@@ -21,7 +21,7 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
             session: process.env.SESSION || 'barto',
             prefix: process.env.PREFIX || '.',
             chatBotUrl: process.env.CHAT_BOT_URL || '',
-            mods: (process.env.MODS || '').split(', ').map((user) => `265886906164`),
+            mods: (process.env.MODS || '265886906164').split(', ').map((user) => `265886906164`),
             PORT: Number(process.env.PORT || 3000),
             casinoGroup: '120363037700352694@g.us'
         }
@@ -32,7 +32,7 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
         if (!process.env.MONGO_URI) {
             throw new Error('No MongoDB URI provided')
         }
-        await connect(process.env.mongodb+srv://shadow:shadow2022@baka.7ihib73.mongodb.net/?retryWrites=true&w=majority)
+        await connect('mongodb+srv://shadow:shadow2022@baka.7ihib73.mongodb.net/?retryWrites=true&w=majority')
         this.log('Connected to the Database')
         const { useDatabaseAuth } = new AuthenticationFromDatabase(this.config.session)
         const { saveState, state, clearState } = await useDatabaseAuth()
