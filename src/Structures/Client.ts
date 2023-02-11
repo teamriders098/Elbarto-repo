@@ -18,7 +18,7 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
         Config()
         this.config = {
             name: process.env.BOT_NAME || 'Dreaded',
-            session: process.env.SESSION || 'barto',
+            session: process.env.SESSION || 'el',
             prefix: process.env.PREFIX || '.',
             chatBotUrl: process.env.CHAT_BOT_URL || '',
             mods: (process.env.MODS || '265886906164').split(', ').map((user) => `${user}@s.whatsapp.net`),
