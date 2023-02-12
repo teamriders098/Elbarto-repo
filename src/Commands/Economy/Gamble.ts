@@ -29,7 +29,7 @@ export default class command extends BaseCommand {
         await this.client.DB.setGold(M.sender.jid, result === direction ? amount : -amount)
         const buttonMessage = {
             text: result === direction ? `Congratulations,You just won ${amount}🎉` : `Sorry, Unfortunately you lost ${amount}😢`,
-            footer: 'Shadow.Inc',
+            footer: 'Dreaded',
             buttons: buttons,
             headerType: 1
         }
