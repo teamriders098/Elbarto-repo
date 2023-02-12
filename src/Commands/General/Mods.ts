@@ -11,7 +11,7 @@ import { Message, Command, BaseCommand } from '../../Structures'
 })
 export default class extends BaseCommand {
     public override execute = async ({ reply }: Message): Promise<void> => {
-        if (!this.client.config.mods.length) return void reply('*[UNMODERATED]*')
+        if (!this.client.config.mods.length) return void reply('*[DREADED OWNERS]*')
         let text = `🤖 *${this.client.config.name} Moderators* \n`
         for (let i = 0; i < this.client.config.mods.length; i++)
             text += `\n*#${i + 1}*\n🥷🏻 *Username:* ${
