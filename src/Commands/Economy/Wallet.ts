@@ -19,7 +19,7 @@ export default class command extends BaseCommand {
         ]
         const buttonMessage = {
             text: `${wallet}`,
-            footer: '',
+            footer: 'Dreaded',
             buttons: buttons,
             headerType: 1
         }
