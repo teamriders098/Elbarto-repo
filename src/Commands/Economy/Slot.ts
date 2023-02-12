@@ -34,7 +34,7 @@ export default class command extends BaseCommand {
         ]
         const buttonMessage = {
             text: text,
-            footer: '',
+            footer: 'Dreaded',
             buttons: buttons,
             headerType: 1
         }
