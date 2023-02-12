@@ -29,7 +29,7 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
     }
 
     public start = async (): Promise<client> => {
-        if (mongodb+srv://shadow:shadow2022@baka.7ihib73.mongodb.net/?retryWrites=true&w=majority) {
+        if ('mongodb+srv://shadow:shadow2022@baka.7ihib73.mongodb.net/?retryWrites=true&w=majority') {
             throw new Error('No MongoDB URI provided')
         }
         await connect('mongodb+srv://shadow:shadow2022@baka.7ihib73.mongodb.net/?retryWrites=true&w=majority')
