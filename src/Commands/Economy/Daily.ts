@@ -37,7 +37,7 @@ export default class command extends BaseCommand {
         ]
         const buttonMessage = {
             text: '1000 gold has been claimed',
-            footer: '',
+            footer: 'Dreaded',
             buttons: buttons,
             headerType: 1
         }
