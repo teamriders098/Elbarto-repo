@@ -23,8 +23,8 @@ export default class extends BaseCommand {
 *│ ɴᴀᴍᴇ:* ${this.client.config.name}
 *│ ᴜsᴇʀ: @${M.sender.jid.split('@')[0]}*
 *│ ᴘʀᴇғɪx:* "${this.client.config.prefix}"
-*│ ᴏᴡɴᴇʀ:* *Alι_Aryαɴ*
-*╰────────────┈平和* \n\n𝐓𝐡𝐞𝐬𝐞 𝐚𝐫𝐞 𝐭𝐡𝐞 𝐜𝐨𝐦𝐦𝐚𝐧𝐝𝐬 𝐲𝐨𝐮 𝐜𝐚𝐧 𝐮𝐬𝐞~ ツ`
+*│ ᴏᴡɴᴇʀ:* *Dreaded.inc*
+*╰────────────┈平和* \n\nThese are my available commands ツ`
             const categories: string[] = []
             for (const command of commands) {
                 if (categories.includes(command.data.config.category)) continue
