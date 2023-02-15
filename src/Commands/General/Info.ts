@@ -19,7 +19,7 @@ export default class command extends BaseCommand {
         }
         const uptime = formatTime(process.uptime())
         return void (await reply(
-            `*━━━❰  ❱━━━*\n\n🔗 *Commands:* ${
+            `*━━━❰Luffy-dreaded❱━━━*\n\n🔗 *Commands:* ${
                 Array.from(this.handler.commands, ([command, data]) => ({
                     command,
                     data
