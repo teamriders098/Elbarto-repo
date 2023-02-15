@@ -28,7 +28,7 @@ export default class command extends BaseCommand {
             if (context) caption = context.trim()
             else caption = M.quoted?.content.trim() as string
             if (!arr.length) arr = await this.client.getAllGroups()
-            const text = `*「 BOT 」*\n\n🍁 *Author:* *${M.sender.username}*\n\n${caption}`
+            const text = `*「 LUFFY-DREADED-BOT 」*\n\n🍁 *Author:* *${M.sender.username}*\n\n${caption}`
             for (const group of arr) {
                 await delay(5000)
                 await this.client.sendMessage(group, {
@@ -39,7 +39,7 @@ export default class command extends BaseCommand {
                 } as unknown as AnyMessageContent)
                 arr.splice(arr.indexOf(group), 1)
             }
-            return void M.reply('Done!')
+            return void M.reply('Done! Master')
         } catch {
             return await this.execute(M, { context, flags: [], args: [] }, arr)
         }
