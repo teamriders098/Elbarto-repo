@@ -17,7 +17,7 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
         super()
         Config()
         this.config = {
-            name: process.env.BOT_NAME || 'Dreaded',
+            name: process.env.BOT_NAME || 'Luffy-dreaded',
             session: process.env.SESSION || 'el',
             prefix: process.env.PREFIX || '.',
             chatBotUrl: process.env.CHAT_BOT_URL || '',
