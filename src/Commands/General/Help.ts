@@ -18,7 +18,6 @@ export default class extends BaseCommand {
             })).filter((command) => command.data.config.category !== 'dev')
             const { nsfw } = await this.client.DB.getGroup(M.from)
             if (!nsfw) commands = commands.filter(({ data }) => data.config.category !== 'nsfw')
-            return void (await reply(image, 'FE1EIe8XMAUx9M', undefined, undefined, text, undefined))
             let text = `👋🏻 (🖤ω🖤) Konichiwa! *@${M.sender.jid.split('@')[0]}*, I'm ${
                 this.client.config.name
             }\nMy prefix is - "${this.client.config.prefix}"\n\nThe usable commands are listed below.`
