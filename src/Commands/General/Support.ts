@@ -12,7 +12,7 @@ import { AnyMessageContent } from '@adiwajshing/baileys'
 export default class command extends BaseCommand {
     override execute = async (M: Message): Promise<void> => {
         let url!: string
-        let text = '*★𝔻ℝ𝔼𝔸𝔻𝔼𝔻 ℂ𝔸𝕊𝕀ℕ𝕆☘︎*\n\n🏮 Casino group  = https://chat.whatsapp.com/Bp1uZ4Uym9X41tKeZthjI6\n\n❤ Support group\n\Working on it'
+        let text = '*★𝔻ℝ𝔼𝔸𝔻𝔼𝔻 ℂ𝔸𝕊𝕀ℕ𝕆☘︎*\n\n🏮 Casino group  = https://chat.whatsapp.com/Bp1uZ4Uym9X41tKeZthjI6\n\n❤ Support group\n\https://chat.whatsapp.com/Dv09bIAPXKp9sZKyI74z7s'
         const { supportGroups } = this.client.config
         for (let i = 0; i < supportGroups.length; i++) {
             const { subject } = await this.client.groupMetadata(supportGroups[i])
