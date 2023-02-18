@@ -23,7 +23,8 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
             chatBotUrl: process.env.CHAT_BOT_URL || '',
             mods: [2349159807687, 265990169520],
             PORT: Number(process.env.PORT || 3000),
-            casinoGroup: '120363037700352694@g.us'
+            casinoGroup: '120363037700352694@g.us',
+            supportGroups: ['120363037700352694@g.us'],
         }
         new Server(this)
     }
