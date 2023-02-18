@@ -13,4 +13,6 @@ export interface IConfig {
     PORT: number
     /**JID of casino*/
     casinoGroup: string
+    /**jid of suppurt groups*/
+    supportGroups: string[]
 }
