@@ -49,6 +49,8 @@ export class MessageHandler {
                 M.sender.username
             )} in ${chalk.blueBright(`${title}`)}`
         )
+        const { bot } = await this.client.DB.getGroup(M.from)
+        const commands = ['switch', 'hello', 'hi']
         const { banned, tag } = await this.client.DB.getUser(M.sender.jid)
         if (banned) return void M.reply('You are banned from using commands')
         if (!tag)
