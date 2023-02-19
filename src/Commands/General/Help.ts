@@ -18,7 +18,7 @@ export default class extends BaseCommand {
             })).filter((command) => command.data.config.category !== 'dev')
             const { nsfw } = await this.client.DB.getGroup(M.from)
             if (!nsfw) commands = commands.filter(({ data }) => data.config.category !== 'nsfw')
-            let text = `👋🏻 (🖤ω🖤) Konichiwa! *@${M.sender.jid.split('@')[0]}*, I'm ${
+            let text = `👋🏻 (🖤ω🖤) Konichiwa! Fellow human being🖤 *@${M.sender.jid.split('@')[0]}*, I'm ${
                 this.client.config.name
             }\nMy prefix is - "${this.client.config.prefix}"\n\nThe usable commands are listed below.`
             const categories: string[] = []
@@ -33,7 +33,7 @@ export default class extends BaseCommand {
                 filteredCommands.forEach((command) => categoryCommands.push(command.data.name))
                 text += `\`\`\`${categoryCommands.join(', ')}\`\`\``
             }
-            text += `\n\n📕 *Note:* Use ${this.client.config.prefix}help <command_name> Join https://chat.whatsapp.com/Dv09bIAPXKp9sZKyI74z7s, while for commands Example: *${this.client.config.prefix}help hello*`
+            text += `\n\n📕 *Note:* Use ${this.client.config.prefix}help <command_name> Join Casino: https://chat.whatsapp.com/LX8hIhV1xNQESwr5n2wUK2, while for commands Example: *${this.client.config.prefix}help hello*`
             return void (await M.reply(text, 'text', undefined, undefined, undefined, [M.sender.jid]))
         } else {
             const cmd = context.trim().toLowerCase()
