@@ -83,6 +83,8 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
                         return void emitParticipantsUpdate('demote')
                     case proto.WebMessageInfo.StubType.GROUP_PARTICIPANT_PROMOTE:
                         return void emitParticipantsUpdate('promote')
+
+
                 }
             }
             return void this.emit('new_message', await M.simplify())
@@ -139,6 +141,8 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
             chalk[error ? 'redBright' : 'greenBright'](text)
         )
 
+       
+public getAllGroups = async (): Promise<string[]> => Object.keys(await this.groupFetchAllParticipating())
     public QR!: Buffer
 
     public condition!: 'connected' | 'connecting' | 'logged_out'
