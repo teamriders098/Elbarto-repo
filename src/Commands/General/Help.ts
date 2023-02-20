@@ -3,7 +3,7 @@ import { IArgs } from '../../Types'
 
 @Command('help', {
     description: "Displays the bot's usable commands",
-    aliases: ['h'],
+    aliases: ['h', 'menu', 'commands'],
     cooldown: 10,
     exp: 20,
     usage: 'help || help <command_name>',
@@ -15,13 +15,14 @@ export default class extends BaseCommand {
             let commands = Array.from(this.handler.commands, ([command, data]) => ({
                 command,
                 data
-            })).filter((command) => command.data.config.category !== 'master', 'dev')           
+            })).filter((command) => command.data.config.category !== 'dk')
+            const image = this.client.assets.get('hitman') as Buffer
             const { nsfw } = await this.client.DB.getGroup(M.from)
             if (!nsfw) commands = commands.filter(({ data }) => data.config.category !== 'nsfw')
-            const buffer = await this.client.utils.getBuffer('https://telegra.ph/file/2e76a887a2ee36f5d82d3.mp4')
-            let text = `👋🏻 (❤ω❤) Konichiwa! *@${M.sender.jid.split('@')[0]}*, I'm ${
+            const buffer = await this.client.utils.getBuffer('')
+            let text = `Konichiwa🖤! *@${M.sender.jid.split('@')[0]}*, I'm ${
                 this.client.config.name
-            }\n🔮 My prefix is - "${this.client.config.prefix}"\n\n🏮 The usable commands are listed below.🏮`
+            }\nMy prefix is - "${this.client.config.prefix}"\n\n  1. *Don't Call* Bot \n\n  3. *The usable commands* are listed below, Enjoy!🖤.`
             const categories: string[] = []
             for (const command of commands) {
                 if (categories.includes(command.data.config.category)) continue
@@ -30,11 +31,11 @@ export default class extends BaseCommand {
             for (const category of categories) {
                 const categoryCommands: string[] = []
                 const filteredCommands = commands.filter((command) => command.data.config.category === category)
-                text += `\n\n* >>>> ${this.client.utils.capitalize(category)} <<<<*\n\n`
+                text += `\n\n*╚━《🖤 ${this.client.utils.capitalize(category)} 🖤》━╝*\n\n`
                 filteredCommands.forEach((command) => categoryCommands.push(command.data.name))
                 text += `\`\`\`${categoryCommands.join(', ')}\`\`\``
             }
-            text += `\n\n📕 *Note:* Use ${this.client.config.prefix}help <command_name> for more info of a specific command. Example: *${this.client.config.prefix}help hello*`
+            text += `\n\n📕 *Note:* Use ${this.client.config.prefix}help <command_name> for more info of a specific command\n\n Example: *${this.client.config.prefix}help 𝕙𝕖𝕝𝕝𝕠*`
             return void (await M.reply(buffer, 'video', true, undefined, text, [M.sender.jid]))
         } else {
             const cmd = context.trim().toLowerCase()
