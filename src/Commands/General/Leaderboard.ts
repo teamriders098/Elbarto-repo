@@ -51,7 +51,6 @@ export default class extends BaseCommand {
         const n = users.length < 10 ? users.length : 10
         for (let i = 0; i < n; i++) {
             let { username } = this.client.contact.getContact(users[i].jid)
-            if (users[i].username?.custom) username = users[i].username.name as string
             text += `\n*#${i + 1}*\n🏮 *Username:* ${username}#${users[i].tag}\n🎏 *Experience:* ${
                 users[i].experience
             }\n🏅 *Rank:* ${getStats(users[i].level).rank}\n💰 *Gold:* ${users[i].wallet + users[i].bank}\n🏦 *Bank:* ${
