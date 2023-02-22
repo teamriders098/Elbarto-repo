@@ -56,6 +56,7 @@ export class MessageHandler {
         if (!tag)
             await this.client.DB.updateUser(M.sender.jid, 'tag', 'set', this.client.utils.generateRandomUniqueTag())
         const cmd = args[0].toLowerCase().slice(prefix.length)
+        if (bot != this.client.config.name.split(' ')[0] && bot !== 'all' && !commands.includes(cmd)) return void null
         const command = this.commands.get(cmd) || this.aliases.get(cmd)
         if (!command) return void M.reply('No such command, Baka!')
         const disabledCommands = await this.client.DB.getDisabledCommands()
