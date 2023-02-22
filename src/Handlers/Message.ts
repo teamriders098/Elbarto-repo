@@ -37,6 +37,58 @@ export class MessageHandler {
                     })
             }
         }
+        const getContent = (): string => {
+            if (M.message?.buttonsResponseMessage)
+                return (M.message?.buttonsResponseMessage?.selectedDisplayText as string).startsWith(
+                    this.client.config.prefix
+                )
+                    ? M.message?.buttonsResponseMessage?.selectedDisplayText || ''
+                    : M.message.buttonsResponseMessage.selectedButtonId || ''
+            if (M.message?.listResponseMessage)
+                return M.message?.listResponseMessage?.singleSelectReply?.selectedRowId || ''
+            return M.message?.conversation
+                ? M.message.conversation
+                : this.hasSupportedMediaMessage
+                ? supportedMediaType
+                      .map((type) => M.message?.[type as 'imageMessage']?.caption)
+                      .filter((caption) => caption)[0] || ''
+                : M.message?.extendedTextMessage?.text
+                ? M.message?.extendedTextMessage.text
+                : ''
+        }
+        this.content = getContent()
+        this.urls = this.client.utils.extractUrls(this.content)
+        const mentions = (M.message?.[this.type as 'extendedTextMessage']?.contextInfo?.mentionedJid || []).filter(
+            (x) => x !== null && x !== undefined
+        )
+        for (const mentioned of mentions) this.mentioned.push(mentioned)
+        let text = this.content
+        for (const mentioned of this.mentioned) text = text.replace(mentioned.split('@')[0], '')
+        this.numbers = this.client.utils.extractNumbers(text)
+        if (M.message?.[this.type as 'extendedTextMessage']?.contextInfo?.quotedMessage) {
+            const { quotedMessage, participant, stanzaId } =
+                M.message?.[this.type as 'extendedTextMessage']?.contextInfo || {}
+            if (quotedMessage && participant && stanzaId) {
+                const Type = Object.keys(quotedMessage)[0] as MessageType
+                const getQuotedContent = (): string => {
+                    if (quotedMessage?.buttonsResponseMessage)
+                        return (quotedMessage?.buttonsResponseMessage?.selectedDisplayText as string).startsWith(
+                            this.client.config.prefix
+                        )
+                            ? quotedMessage?.buttonsResponseMessage?.selectedDisplayText || ''
+                            : quotedMessage?.buttonsResponseMessage.selectedButtonId || ''
+                    if (quotedMessage?.listResponseMessage)
+                        return quotedMessage?.listResponseMessage?.singleSelectReply?.selectedRowId || ''
+                    return quotedMessage?.conversation
+                        ? quotedMessage.conversation
+                        : supportedMediaType.includes(Type)
+                        ? supportedMediaType
+                              .map((type) => quotedMessage?.[type as 'imageMessage']?.caption)
+                              .filter((caption) => caption)[0] || ''
+                        : quotedMessage?.extendedTextMessage?.text
+                        ? quotedMessage?.extendedTextMessage.text
+                        : ''
+                }
         await this.moderate(M)
         if (!args[0] || !args[0].startsWith(prefix))
             return void this.client.log(
