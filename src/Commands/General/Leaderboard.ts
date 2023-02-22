@@ -5,7 +5,7 @@ import { getStats } from '../../lib'
 @Command('leaderboard', {
     description: "Displays global's or group's leaderboord of a specific field",
     category: 'general',
-    usage: 'leaderboard (--group) [--pokemon | --cards | --wallet | --bank | --gold | --quiz]',
+    usage: 'leaderboard (--group) [--wallet | --bank | --gold]',
     exp: 10,
     cooldown: 25,
     aliases: ['lb']
