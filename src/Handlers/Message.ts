@@ -52,10 +52,11 @@ export class MessageHandler {
         const { bot } = await this.client.DB.getGroup(M.from)
         const commands = ['switch', 'hello', 'hi']
         const { banned, tag } = await this.client.DB.getUser(M.sender.jid)
-        if (banned) return void M.reply('You are banned from using commands')
         if (!tag)
             await this.client.DB.updateUser(M.sender.jid, 'tag', 'set', this.client.utils.generateRandomUniqueTag())
         const cmd = args[0].toLowerCase().slice(prefix.length)
+        if (bot != this.client.config.name.split(' ')[0] && bot !== 'all' && !commands.includes(cmd)) return void null
+        if (banned) return void M.reply('You are banned from using commands')
         const command = this.commands.get(cmd) || this.aliases.get(cmd)
         if (!command) return void M.reply('No such command, Baka!')
         const disabledCommands = await this.client.DB.getDisabledCommands()
