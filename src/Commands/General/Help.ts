@@ -15,7 +15,7 @@ export default class extends BaseCommand {
             let commands = Array.from(this.handler.commands, ([command, data]) => ({
                 command,
                 data
-            })).filter((command) => command.data.config.category !== 'dk')
+            })).filter((command) => command.data.config.category !== 'dev')
             const image = this.client.assets.get('hitman') as Buffer
             const { nsfw } = await this.client.DB.getGroup(M.from)
             if (!nsfw) commands = commands.filter(({ data }) => data.config.category !== 'nsfw')
