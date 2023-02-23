@@ -19,7 +19,7 @@ export default class extends BaseCommand {
             const { nsfw } = await this.client.DB.getGroup(M.from)
             const buffer = await this.client.utils.getBuffer('https://telegra.ph/file/01983e320028db9edf653.mp4')
             if (!nsfw) commands = commands.filter(({ data }) => data.config.category !== 'nsfw')
-            let text = `👋🏻 (💙ω💙) Konichiwa! *@${M.sender.jid.split('@')[0]}*, I'm ${
+            let text = `👋🏻! (🖤ω🖤) Konichiwa! *@${M.sender.jid.split('@')[0]}*, I'm ${
                 this.client.config.name
             }\nMy prefix is - "${this.client.config.prefix}"\n\nThe usable commands are listed below.`
             const categories: string[] = []
@@ -30,7 +30,7 @@ export default class extends BaseCommand {
             for (const category of categories) {
                 const categoryCommands: string[] = []
                 const filteredCommands = commands.filter((command) => command.data.config.category === category)
-                text += `\n\n*━━━❰ ${this.client.utils.capitalize(category)} ❱━━━*\n\n`
+                text += `\n\n*━━━❰🖤 ${this.client.utils.capitalize(category)} 🖤❱━━━*\n\n`
                 filteredCommands.forEach((command) => categoryCommands.push(command.data.name))
                 text += `\`\`\`${categoryCommands.join(', ')}\`\`\``
             }
