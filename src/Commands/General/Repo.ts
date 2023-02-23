@@ -1,49 +1,39 @@
+import { join } from 'path'
 import { BaseCommand, Command, Message } from '../../Structures'
 
 @Command('repo', {
-    description: 'Get the base repo of the bot',
-    category: 'general',
-    aliases: ['script'],
+    description: "Displays bot's information",
     usage: 'repo',
+    category: 'general',
     cooldown: 5,
-    exp: 100
+    exp: 20
 })
 export default class extends BaseCommand {
-    public override execute = async (M: Message): Promise<void> => {
-        const image = await this.client.utils.getBuffer('https://telegra.ph/file/bdd281b87aaa6f4ee0a67.jpg')
-        const result = await this.client.utils.fetch<RepoInfo>(
-            'https://api.github.com/repos/AliAryanTech/Chisato-WhatsApp'
-        )
-        let text = ''
-        text += `*${result.name}* ✨\n\n`
-        text += `✍🏻 *Author: ${result.owner.login}*\n`
-        text += `⭐ *Star's: ${result.stargazers_count}*\n`
-        text += `🍴 *Forks: ${result.forks_count}*\n`
-        text += `⚠️ *Issues: ${result.open_issues_count}*\n`
-        text += `🌐 *Visibility: ${result.visibility}*\n`
-        text += `💠 *Language: ${result.language}*\n`
-        text += `🛡️ *License: ${result.license.name}*\n`
-        text += `⚙️ *Repo Link: ${result.html_url}*`
-        return void (await M.reply(image, 'image', undefined, undefined, text))
-    }
-}
+    public override execute = async ({ reply }: Message): Promise<void> => {
+        const { name } = require(join(__dirname, '..', '..', '..', 'package.json')) as {
+            name: string
+        }
+        const image = this.client.assets.get('Img') as Buffer
+        const text = `*━━━❰ DREADED BOT  ❱━━━*\n\n⚜𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻: An anime themed WhatsApp bot based on multi device(MD).        
 
-interface RepoInfo {
-    name: string
-    owner: {
-        login: string
+🚥𝗦𝘁𝗮𝘁𝘂𝘀: Bot in development stage.
+
+🧩𝗛𝗶𝗻𝘁: The bot is not an open source project, therefore you can deploy a version of it;
+(nowhere coz its not online)
+
+⭐𝗜𝗻𝗳𝗼: This bot is using a base of WhatsApp-bot, we therefore don't have any copyright or either affiliated with WhatsApp-bot anyhowly. Thanks to lots of people we are successful now.
+Follow Elbarto on github!:)
+(https://github.com/elbarto2m)
+
+📃𝗟𝗶𝗰𝗲𝗻𝘀𝗲: You may obtain a copy of the License at;
+http://www.gnu.org/licenses/
+
+(𝗚𝗡𝗨 𝗔𝗙𝗙𝗘𝗥𝗢 𝗚𝗘𝗡𝗘𝗥𝗔𝗟 𝗣𝗨𝗕𝗟𝗜𝗖 𝗟𝗜𝗖𝗘𝗡𝗦𝗘).
+»𝖵𝖾𝗋𝗌𝗂𝗈𝗇 3.0 \n`
+        return void (await reply(image, 'image', undefined, undefined, text, undefined, {
+            title: this.client.utils.capitalize(name),
+            thumbnail: image,
+            mediaType: 1
+        }))
     }
-    html_url: string
-    description: string | null
-    language: string
-    stargazers_count: number
-    watchers_count: number
-    forks_count: number
-    open_issues_count: number
-    visibility: string
-    license: {
-        name: string
-    }
-    created_at: string
-    updated_at: string
 }
