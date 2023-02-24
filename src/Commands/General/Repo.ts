@@ -13,7 +13,7 @@ export default class extends BaseCommand {
         const { name } = require(join(__dirname, '..', '..', '..', 'package.json')) as {
             name: string
         }
-        const image = this.client.assets.get('https://telegra.ph/file/bdd281b87aaa6f4ee0a67.jpg') as Buffer
+        const image = this.client.assets.get('https://telegra.ph/file/31323c5a1527be6b553c8.jpg') as Buffer
         const text = `*━━━❰ DREADED BOT  ❱━━━*\n\n⚜𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻: An anime themed WhatsApp bot based on multi device(MD).        
 
 🚥𝗦𝘁𝗮𝘁𝘂𝘀: Bot in development stage.
