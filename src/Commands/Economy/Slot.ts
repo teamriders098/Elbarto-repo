@@ -22,7 +22,7 @@ export default class command extends BaseCommand {
         const points = results.lines.reduce((total, line) => total + line.points, 0)
         const resultAmount = points <= 0 ? -amount : amount * points
         await this.client.DB.setGold(M.sender.jid, resultAmount)
-        let text = '🎰 *SLOT MACHINE* 🎰\n\n'
+        let text = '🍃 *SLOT MACHINE* 🍃\n\n'
         text += results.visualize()
         text += points <= 0 ? `📉 You lost ${amount} gold` : `📈 You won ${resultAmount} gold`
         const buttons = [
