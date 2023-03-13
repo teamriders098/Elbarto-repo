@@ -5,7 +5,7 @@ import { IArgs } from '../../Types'
     description: '',
     usage: 'Gamble <amount> left/right',
     category: 'economy',
-    cooldown: 25,
+    cooldown: 5,
     exp: 20,
     casino: true
 })
