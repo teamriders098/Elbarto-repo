@@ -34,7 +34,7 @@ export default class command extends BaseCommand {
         ]
         const buttonMessage = {
             text: text,
-            footer: 'Dreaded',
+            footer: 'nova',
             buttons: buttons,
             headerType: 1
         }
@@ -45,17 +45,17 @@ export default class command extends BaseCommand {
 
     private symbols = [
         new SlotSymbol('1', {
-            display: '🍒',
+            display: '☠️',
             points: 1,
             weight: 100
         }),
         new SlotSymbol('2', {
-            display: '🍀',
+            display: '🍁',
             points: 1,
             weight: 100
         }),
         new SlotSymbol('b', {
-            display: '💰',
+            display: '🌟',
             points: 5,
             weight: 40
         })
