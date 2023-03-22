@@ -5,7 +5,7 @@ import { BaseCommand, Command, Message } from '../../Structures'
     usage: 'bank',
     category: 'economy',
     exp: 10,
-    cooldown: 10
+    cooldown: 4
 })
 export default class command extends BaseCommand {
     override execute = async ({ from, sender, message }: Message): Promise<void> => {
