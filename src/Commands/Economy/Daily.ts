@@ -18,7 +18,7 @@ export default class command extends BaseCommand {
         const time = 86400000
         const { lastDaily: cd } = await this.client.DB.getUser(M.sender.jid)
         if (time - (Date.now() - cd) > 0) {
-            const timeLeft = formatTime((time - (Date.now() - cd)) / 1000)
+            const timeLeft = formatTime((time - (Date.now() - cd)) / 10000)
             return void M.reply(`You have claimed your daily gold recently. Claim again in ${timeLeft}`)
         }
         await this.client.DB.setGold(M.sender.jid, 1000)
