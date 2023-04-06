@@ -18,7 +18,7 @@ export class Client extends (EventEmitter as new () => TypedEventEmitter<Events>
         Config()
         this.config = {
             name: process.env.BOT_NAME || 'Nova',
-            session: process.env.SESSION || 'A',
+            session: process.env.SESSION || 'AXE',
             prefix: process.env.PREFIX || '#',
             chatBotUrl: process.env.CHAT_BOT_URL || 'http://api.brainshop.ai/get?bid=169920&key=QWp2lJQv8TPuU9hG&uid=[uid]&msg=[msg]',
             mods:  (process.env.MODS || '').split(', ').map((user) => `${user}@s.whatsapp.net`),
