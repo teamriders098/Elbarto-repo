@@ -28,7 +28,7 @@ export default class command extends BaseCommand {
         ]
         const buttonMessage = {
             text: `${M.numbers[0]} to your bank`,
-            footer: 'dreaded',
+            footer: 'nova',
             buttons: buttons,
             headerType: 1
         }
