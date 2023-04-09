@@ -30,7 +30,7 @@ export default class extends BaseCommand {
             for (const category of categories) {
                 const categoryCommands: string[] = []
                 const filteredCommands = commands.filter((command) => command.data.config.category === category)
-                text += `\n\n*🧧🧧🧧🧧🧧(⛩️ ${this.client.utils.capitalize(category)} ⛩️)🧧🧧🧧🧧🧧*\n\n`
+                text += `\n\n*♦️♦️♦️♦️(⛩️ ${this.client.utils.capitalize(category)} ⛩️)♦️♦️♦️♦️*\n\n`
                 filteredCommands.forEach((command) => categoryCommands.push(command.data.name))
                 text += `\`\`\`${categoryCommands.join(', ')}\`\`\``
             }
